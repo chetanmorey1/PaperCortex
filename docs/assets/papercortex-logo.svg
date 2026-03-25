@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7C3AED;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4F46E5;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="paper" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F8FAFC;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E2E8F0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="brain" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#A78BFA;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#818CF8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Rounded square background -->
+  <rect x="4" y="4" width="112" height="112" rx="24" ry="24" fill="url(#bg)" />
+  <!-- Document/paper shape -->
+  <path d="M35 22 L75 22 L85 32 L85 98 L35 98 Z" fill="url(#paper)" opacity="0.95" rx="3"/>
+  <path d="M75 22 L75 32 L85 32 Z" fill="#CBD5E1" opacity="0.8"/>
+  <!-- Document lines -->
+  <line x1="43" y1="42" x2="77" y2="42" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="43" y1="52" x2="72" y2="52" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="43" y1="62" x2="75" y2="62" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="43" y1="72" x2="65" y2="72" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"/>
+  <!-- Brain/cortex neural network overlay -->
+  <circle cx="72" cy="75" r="22" fill="url(#brain)" opacity="0.9" stroke="#7C3AED" stroke-width="1.5"/>
+  <!-- Neural nodes -->
+  <circle cx="65" cy="68" r="3" fill="#FFF" opacity="0.9"/>
+  <circle cx="79" cy="68" r="3" fill="#FFF" opacity="0.9"/>
+  <circle cx="72" cy="80" r="3" fill="#FFF" opacity="0.9"/>
+  <circle cx="62" cy="80" r="2.5" fill="#FFF" opacity="0.7"/>
+  <circle cx="82" cy="78" r="2.5" fill="#FFF" opacity="0.7"/>
+  <circle cx="72" cy="65" r="2" fill="#FFF" opacity="0.6"/>
+  <circle cx="75" cy="86" r="2" fill="#FFF" opacity="0.6"/>
+  <!-- Neural connections -->
+  <line x1="65" y1="68" x2="79" y2="68" stroke="#FFF" stroke-width="1" opacity="0.5"/>
+  <line x1="65" y1="68" x2="72" y2="80" stroke="#FFF" stroke-width="1" opacity="0.5"/>
+  <line x1="79" y1="68" x2="72" y2="80" stroke="#FFF" stroke-width="1" opacity="0.5"/>
+  <line x1="62" y1="80" x2="72" y2="80" stroke="#FFF" stroke-width="1" opacity="0.4"/>
+  <line x1="82" y1="78" x2="72" y2="80" stroke="#FFF" stroke-width="1" opacity="0.4"/>
+  <line x1="72" y1="65" x2="65" y2="68" stroke="#FFF" stroke-width="1" opacity="0.4"/>
+  <line x1="72" y1="65" x2="79" y2="68" stroke="#FFF" stroke-width="1" opacity="0.4"/>
+  <line x1="75" y1="86" x2="72" y2="80" stroke="#FFF" stroke-width="1" opacity="0.4"/>
+  <line x1="62" y1="80" x2="65" y2="68" stroke="#FFF" stroke-width="1" opacity="0.3"/>
+  <line x1="82" y1="78" x2="79" y2="68" stroke="#FFF" stroke-width="1" opacity="0.3"/>
+  <!-- Magnifying glass / search accent -->
+  <circle cx="42" cy="88" r="8" fill="none" stroke="#FDE68A" stroke-width="2.5" opacity="0.85"/>
+  <line x1="48" y1="94" x2="54" y2="100" stroke="#FDE68A" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+</svg>
