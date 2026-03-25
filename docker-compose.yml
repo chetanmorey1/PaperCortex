@@ -1,0 +1,36 @@
+services:
+  papercortex:
+    build: .
+    container_name: papercortex
+    restart: unless-stopped
+    ports:
+      - "3100:3100"
+    volumes:
+      - papercortex-data:/app/data
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - ollama
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: papercortex-ollama
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-models:/root/.ollama
+    # Uncomment for NVIDIA GPU support:
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+
+volumes:
+  papercortex-data:
+  ollama-models:
