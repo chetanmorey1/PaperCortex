@@ -96,7 +96,7 @@ export function createTransactionMatcher(): TransactionMatcher {
     // TODO: Add support for different CSV delimiters (semicolon for German exports)
     // TODO: Handle different date formats (DD.MM.YYYY, YYYY-MM-DD, MM/DD/YYYY)
 
-    const _format = format; // Acknowledge format parameter for future use
+    void format; // reserved for future format auto-detection
 
     const records = parse(raw, {
       columns: true,

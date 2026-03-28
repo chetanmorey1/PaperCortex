@@ -7,7 +7,10 @@
  * @see https://modelcontextprotocol.io
  */
 
+import * as http from "http";
+
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
+import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import {
   CallToolRequestSchema,
@@ -234,13 +237,72 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 });
 
 // ---------------------------------------------------------------------------
-// Start server
+// Start server — stdio (local) or http (remote / Cloudflare Tunnel)
 // ---------------------------------------------------------------------------
 
+async function startHttp(): Promise<void> {
+  const port = parseInt(process.env["PORT"] ?? "3100", 10);
+  // Track active SSE transports by session id
+  const sessions: Record<string, SSEServerTransport> = {};
+
+  const httpServer = http.createServer(async (req, res) => {
+    try {
+      if (req.url === "/health" && req.method === "GET") {
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ status: "ok", service: "PaperCortex", transport: "http" }));
+        return;
+      }
+
+      // SSE endpoint — client opens a long-lived connection
+      if (req.url === "/sse" && req.method === "GET") {
+        const transport = new SSEServerTransport("/messages", res);
+        sessions[transport.sessionId] = transport;
+        res.on("close", () => {
+          delete sessions[transport.sessionId];
+        });
+        await server.connect(transport);
+        return;
+      }
+
+      // Message endpoint — client posts tool calls here
+      if (req.url?.startsWith("/messages") && req.method === "POST") {
+        const sessionId = new URL(req.url, `http://localhost`).searchParams.get("sessionId");
+        const transport = sessionId ? sessions[sessionId] : undefined;
+        if (transport) {
+          await transport.handlePostMessage(req, res);
+        } else {
+          res.writeHead(400, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ error: "Session not found" }));
+        }
+        return;
+      }
+
+      res.writeHead(404);
+      res.end("Not found");
+    } catch (err) {
+      console.error("HTTP handler error:", err);
+      if (!res.headersSent) {
+        res.writeHead(500);
+        res.end("Internal error");
+      }
+    }
+  });
+
+  httpServer.listen(port, () => {
+    console.error(`PaperCortex MCP Server running on HTTP port ${port} (SSE at /sse)`);
+  });
+}
+
 async function main(): Promise<void> {
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
-  console.error("PaperCortex MCP Server running on stdio");
+  const transport = (process.env["TRANSPORT"] ?? "stdio").toLowerCase();
+
+  if (transport === "http") {
+    await startHttp();
+  } else {
+    const stdioTransport = new StdioServerTransport();
+    await server.connect(stdioTransport);
+    console.error("PaperCortex MCP Server running on stdio");
+  }
 }
 
 main().catch((error) => {
